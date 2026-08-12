@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>午後五時十二分 — 名前のないもの</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="stage">
+  <svg id="links" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="nodes"></div>
+  <canvas id="fx"></canvas>
+</div>
+
+<div id="log" aria-live="polite"></div>
+
+<!-- 操作の別を、その場で示す小さな札 -->
+<div id="seltip"></div>
+<div id="dragtip"></div>
+
+<div id="hud">
+  <button id="btn-sound" title="音">音</button>
+  <button id="btn-help"  title="操作">？</button>
+  <button id="btn-menu"  title="メニュー">≡</button>
+</div>
+
+<div id="hint"></div>
+<div id="stuck" class="hidden"></div>
+
+<!-- ─────────── タイトル ─────────── -->
+<div id="title-screen" class="overlay">
+  <div class="title-inner">
+    <h1>午後五時十二分</h1>
+    <p class="subtitle">— 名前のないもの —</p>
+    <div class="title-menu">
+      <button id="btn-continue" class="hidden">つづきから</button>
+      <button id="btn-new">はじめる</button>
+    </div>
+    <p class="credit">画面には、単語と、線しかありません。</p>
+  </div>
+  <div id="secret-node" class="hidden">本当に？</div>
+</div>
+
+<!-- ─────────── 操作説明 ─────────── -->
+<div id="help-screen" class="overlay hidden">
+  <div class="panel">
+    <h2>触りかた</h2>
+
+    <div class="twin">
+      <div class="twin-col cool">
+        <div class="twin-h">接続 — 線を引く</div>
+        <div class="twin-op">押す → もう一つ押す</div>
+        <p class="twin-b">二つの<b>あいだ</b>に何が起きるかを見る。<br>
+          線が<b>残る</b>。あとから切れる。<br>
+          選んでいるあいだ、すでに繋がっている言葉は<span class="c-cool">青</span>くなる。</p>
+      </div>
+      <div class="twin-col warm">
+        <div class="twin-h">重ねる — 乗せる</div>
+        <div class="twin-op">掴んで、相手の上ではなす</div>
+        <p class="twin-b">二つが<b>同じもの</b>ではないかを見る。<br>
+          線は<b>残らない</b>。二つはその場に残る。<br>
+          運んでいるあいだ、乗せられる言葉は<span class="c-warm">琥珀</span>になる。</p>
+      </div>
+    </div>
+    <p class="small note">同じ二語でも、<b>結ぶ</b>のと<b>重ねる</b>のとでは別のものが出ます。<br>
+      置きかたを取り違えたときは、盤のほうから教えます。</p>
+
+    <dl>
+      <dt><span class="dotted">点線で囲まれた言葉</span></dt>
+      <dd>押すだけでひらく。組み合わせなくてよい。</dd>
+      <dt>切断</dt><dd>線を押す。粒になって消える。意味が変わることがある。</dd>
+      <dt>消す</dt><dd>言葉を選ぶと下に「消す」が出る。消したことは、残る。</dd>
+      <dt>移動</dt><dd>掴んで動かす。何もない所を掴むと盤ごと動く。</dd>
+    </dl>
+
+    <p class="small">正解を探す遊びではありません。<br>繋がらない組み合わせにも、たいてい何か返ってきます。</p>
+    <button class="close">閉じる</button>
+  </div>
+</div>
+
+<!-- ─────────── メニュー ─────────── -->
+<div id="menu-screen" class="overlay hidden">
+  <div class="panel">
+    <h2>メニュー</h2>
+    <p class="small">見つけた言葉 <span id="stat-found">0</span> ／ 章 <span id="stat-act">1</span></p>
+    <div class="menu-btns">
+      <button id="btn-resume">戻る</button>
+      <button id="btn-title">タイトルへ</button>
+      <button id="btn-reset" class="danger">最初から（記録を消す）</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────── エンディング ─────────── -->
+<div id="ending-screen" class="overlay hidden">
+  <div class="ending-inner">
+    <div id="ending-title"></div>
+    <div id="ending-body"></div>
+    <button id="ending-back" class="hidden">タイトルへ</button>
+  </div>
+</div>
+
+<script src="js/data/nodes.js"></script>
+<script src="js/data/recipes.js"></script>
+<script src="js/data/story.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

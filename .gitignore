@@ -1,0 +1,9 @@
+# 旧バージョンのスナップショット（2026-08-10 時点のコピー）
+/gogo512/
+
+# OS / エディタ
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
